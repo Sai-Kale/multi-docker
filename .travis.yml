@@ -5,22 +5,22 @@ services:
   - docker
 
 before_install:
-  - docker build -t saikumar/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t saikumarkale/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run saikumar/react-test npm test -- --coverage
+  - docker run saikumarkale/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t saikumar/multi-client ./client
-  - docker build -t saikumar/multi-nginx ./nginx
-  - docker build -t saikumar/multi-server ./server
-  - docker build -t saikumar/multi-worker ./worker
+  - docker build -t saikumarkale/multi-client ./client
+  - docker build -t saikumarkale/multi-nginx ./nginx
+  - docker build -t saikumarkale/multi-server ./server
+  - docker build -t saikumarkale/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push saikumar/multi-client
-  - docker push saikumar/multi-nginx
-  - docker push saikumar/multi-server
-  - docker push saikumar/multi-worker
+  - docker push saikumarkale/multi-client
+  - docker push saikumarkale/multi-nginx
+  - docker push saikumarkale/multi-server
+  - docker push saikumarkale/multi-worker
 
 
